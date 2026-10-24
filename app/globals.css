@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ─── CSS Variables ─────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Light enterprise theme */
+    --background:         0 0% 100%;
+    --foreground:         222 47% 11%;
+    --card:               0 0% 100%;
+    --card-foreground:    222 47% 11%;
+    --popover:            0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary:            221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary:          213 100% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted:              213 50% 96%;
+    --muted-foreground:   215 16% 47%;
+    --accent:             213 100% 96%;
+    --accent-foreground:  222 47% 11%;
+    --destructive:        0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border:             213 77% 90%;
+    --input:              213 77% 94%;
+    --ring:               221 83% 53%;
+    --radius:             0.625rem;
+
+    --font-inter:         'Inter', system-ui, sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-slate-900;
+    font-family: var(--font-inter);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-space-grotesk);
+    @apply text-slate-900;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track  { background: #F8FBFF; }
+  ::-webkit-scrollbar-thumb  { background: #BFDBFE; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+}
+
+/* ─── Component Classes ──────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Layout ── */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Typography ── */
+  .gradient-text {
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #60A5FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-hero {
+    background: linear-gradient(135deg, #FFFFFF 0%, #BFDBFE 60%, #93C5FD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Cards ── */
+  .card-premium {
+    @apply bg-white rounded-2xl border border-brand-100;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.07), 0 8px 28px rgba(37,99,235,0.09);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+  .card-premium:hover {
+    border-color: #93C5FD;
+    box-shadow: 0 12px 48px rgba(37,99,235,0.20), 0 4px 12px rgba(37,99,235,0.10);
+    transform: translateY(-4px);
+  }
+
+  /* Card on steel/frosted backgrounds — slightly elevated white */
+  .card-elevated {
+    @apply bg-white rounded-2xl;
+    border: 1px solid rgba(191,219,254,0.6);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.08), 0 16px 40px rgba(37,99,235,0.10), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+  .card-elevated:hover {
+    border-color: #60A5FA;
+    box-shadow: 0 16px 56px rgba(37,99,235,0.22), 0 4px 16px rgba(37,99,235,0.12), inset 0 1px 0 rgba(255,255,255,1);
+    transform: translateY(-5px);
+  }
+
+  /* Glassmorphism card for dark sections */
+  .card-glass-dark {
+    @apply rounded-2xl;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-glass-dark:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.25);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.18);
+    transform: translateY(-3px);
+  }
+
+  .card-glass {
+    @apply rounded-2xl border border-white/60;
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(37,99,235,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .card-ice {
+    @apply bg-ice-100 rounded-2xl border border-brand-100/60;
+    box-shadow: 0 1px 3px rgba(37,99,235,0.04);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white cursor-pointer;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.30);
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%);
+    box-shadow: 0 6px 24px rgba(37,99,235,0.45);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold cursor-pointer;
+    border: 1.5px solid #2563EB;
+    color: #2563EB;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+  .btn-outline:hover {
+    background: #EFF6FF;
+    border-color: #1D4ED8;
+    color: #1D4ED8;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand-700 bg-white cursor-pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+  }
+  .btn-white:hover {
+    background: #EFF6FF;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+    transform: translateY(-1px);
+  }
+
+  /* ── Dot grid overlay ── */
+  .dot-grid-overlay {
+    background-image: radial-gradient(circle, rgba(37,99,235,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ── Light grid lines ── */
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ── Section dividers ── */
+  .section-divider {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent, #BFDBFE 40%, #BFDBFE 60%, transparent);
+  }
+
+  /* ── Label chip ── */
+  .label-chip {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-[0.12em] uppercase;
+    background: #EFF6FF;
+    color: #2563EB;
+    border: 1px solid #BFDBFE;
+  }
+
+  /* Dark variant — for use inside bg-section-navy and hero sections */
+  .label-chip-dark {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-[0.12em] uppercase;
+    background: rgba(255,255,255,0.10);
+    color: #93C5FD;
+    border: 1px solid rgba(255,255,255,0.20);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ── Blue badge ── */
+  .badge-blue {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium;
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #DBEAFE;
+  }
+
+  /* ── Hero glass card ── */
+  .hero-glass-card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 1rem;
+  }
+
+  /* ── Input field ── */
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl bg-white border text-slate-900 placeholder-slate-400 text-sm;
+    border-color: #DBEAFE;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  }
+  .input-field.error {
+    border-color: #EF4444;
+  }
+
+  /* ── Section label line ── */
+  .label-line {
+    @apply flex items-center gap-3;
+  }
+  .label-line::before {
+    content: '';
+    @apply block h-px w-8;
+    background: #2563EB;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* ── Hero backgrounds ── */
+  .bg-hero { background: linear-gradient(135deg, #0D2882 0%, #1741B8 50%, #1A4FCC 100%); }
+  .bg-brand-gradient { background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%); }
+
+  /* ── Light section system (use these instead of bg-white for sections) ── */
+  /* Ice — lightest blue-tint, similar to previous bg-ice-section */
+  .bg-ice-section   { background: linear-gradient(180deg, #EEF4FB 0%, #E2EAF5 100%); }
+  .bg-ice-flat      { background: #E8F0FA; }
+
+  /* Steel — cool blue-gray, primary alternating surface */
+  .bg-section-steel { background: linear-gradient(180deg, #F0F5FB 0%, #E5EDF7 100%); }
+
+  /* Frost — slightly deeper frosted blue, for visual rhythm */
+  .bg-section-frost { background: linear-gradient(180deg, #E8F0F9 0%, #D9E6F3 100%); }
+
+  /* White with subtle blue glow for "white" sections that still have depth */
+  .bg-section-white {
+    background: #FFFFFF;
+    position: relative;
+  }
+  .bg-section-white::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #BFDBFE 40%, #BFDBFE 60%, transparent);
+  }
+
+  /* Dark navy — for rich contrast sections (testimonials, etc.) */
+  .bg-section-navy  { background: linear-gradient(135deg, #0E1D3A 0%, #122444 55%, #0A1828 100%); }
+
+  /* ── Section glow overlays ── */
+  .section-radial-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .section-radial-glow::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Focus */
+  :focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
